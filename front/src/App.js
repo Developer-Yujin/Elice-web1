@@ -68,7 +68,7 @@ function App() {
                         <Header />
                         <Routes>
                             {/*원래는 Portfolio 컴포넌트인데, Home.js 구현해보려고 여기서 Home넣으면서 시연해봤습니다! */}
-                            <Route path="/" exact element={<Portfolio />} />
+                            <Route path="/" exact element={<Home />} />
                             <Route path="/login" element={<LoginForm />} />
                             <Route path="/register" element={<RegisterForm />} />
                             <Route path="/users/:userId" element={<Portfolio />} />
