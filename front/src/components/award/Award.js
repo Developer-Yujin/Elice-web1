@@ -28,7 +28,7 @@ function Award({award, setAwards, isEditable}) {
             }
             awardRemove()
         }
-    }, [isRemoving])
+    }, [])
 
     return (
         <>
@@ -50,4 +50,3 @@ function Award({award, setAwards, isEditable}) {
 }
 
 export default Award
-

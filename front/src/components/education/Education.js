@@ -23,7 +23,7 @@ function Education({education, isEditable, setEducations}){
             }
             educationRemove()
         }
-    }, [isRemoving])
+    }, [])
     
     return (
         <>

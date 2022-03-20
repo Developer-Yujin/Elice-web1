@@ -39,4 +39,3 @@ function AwardCard({award, isEditable, setIsEditing, setIsRemoving}){
 }
 
 export default AwardCard
-
