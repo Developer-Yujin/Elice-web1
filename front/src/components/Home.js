@@ -66,7 +66,6 @@ function Home(){
 				</Col>
 
 				<Col>
-					<div>취업 팁 게시판</div>
 					<Categories 
 						isLogin={isLogin}
 						setIsViewable={setIsViewable}

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import {Card, Row, Col} from 'react-bootstrap'
 import Category from './Category'
 import CategoryAddForm from './CategoryAddForm'
+import Style from '../../../App.module.css'
 
 function Categories({isLogin, setIsViewable}){
     const [categories, setCategories] = useState([
@@ -29,7 +30,7 @@ function Categories({isLogin, setIsViewable}){
 
                         <button
                             onClick={() => setIsAdding(true)}
-                            className="formAddButton">
+                            className={Style.formAddButton}>
                         </button>
                         
                     </Col>

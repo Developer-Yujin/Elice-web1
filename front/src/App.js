@@ -65,6 +65,7 @@ function App() {
                         <Route path="/register" element={<RegisterForm />} />
                         <Route path="/users/:userId" element={<Portfolio />} />
                         <Route path="/network" element={<Network />} />
+                        <Route path="/portfolio" element={<Portfolio />} />
                         <Route path="*" element={<Portfolio />} />
                         {/*<Route path="/category" element={<Category />} />*/}
                     </Routes>

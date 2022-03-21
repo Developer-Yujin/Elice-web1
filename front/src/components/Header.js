@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import { UserStateContext, DispatchContext } from "../App"
-import '../App.css'
+import Style from '../App.module.css'
 
 function Header() {
     const navigate = useNavigate()
@@ -23,27 +23,29 @@ function Header() {
     };
 
     const naviagationInformations = [
-        {title: '마이페이지', link: '/'},
+        {title: 'HOME', link: '/'},
+        {title: '마이페이지', link: '/portfolio'},
         {title: '네트워크', link: '/network'},
+        
     ]
 
     return (
-        <div className="navBar">
+        <div className={Style.navBar}>
             <div style= {{fontSize: '2.5em', fontFamily: 'Rosarivo'}}>MY PORTFOLIO</div>
-            <ul style={{ gap: 30 }} className="navItems">
+            <ul style={{ gap: 30 }} className={Style.navItems}>
                 {naviagationInformations.map((navigationItem) => (
                     <li
                         onClick={() => {
                             navigate(navigationItem.link)
                         }}
-                        className="navItem"
+                        className={Style.navItem}
                     >{navigationItem.title}
                     </li>
                 ))}
                 
                 {isLogin && (
                     <li onClick={logout}
-                        className = "navItem"> 로그아웃</li>
+                        className = {Style.navItem}> 로그아웃</li>
                 )}
             </ul>
         </div>

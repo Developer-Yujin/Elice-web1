@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import {Form,Col,Button,Row} from 'react-bootstrap'
 import * as Api from '../../api'
-import '../../App.css'
+import Style from '../../App.module.css'
 
 
 function EducationEditForm({setEducations, currentEducation, setIsEditing}){
@@ -14,17 +14,24 @@ function EducationEditForm({setEducations, currentEducation, setIsEditing}){
         e.stopPropagation()
 
         const user_id = currentEducation.user_id
-        await Api.put(`educations/${currentEducation.id}`, {
-            user_id,
-            school,
-            major,
-            position
-        })
 
-        const res = await Api.get("educationlist", user_id)
-        setEducations(res.data)
+        try{
+            await Api.put(`educations/${currentEducation.id}`, {
+                user_id,
+                school,
+                major,
+                position
+            })
 
-        setIsEditing(false)
+            const res = await Api.get("educationlist", user_id)
+            console.log(res.data)
+            setEducations(res.data)
+
+            setIsEditing(false)
+            
+        } catch(err) {
+            console.log(err)
+        }
     }
     
     return (
@@ -98,13 +105,13 @@ function EducationEditForm({setEducations, currentEducation, setIsEditing}){
                 <Col sm={{ span: 20 }}>
                 <button
                     type="submit"
-                    className="mvpConfirmButton me-3">
+                    className={Style.mvpConfirmButton}>
                     확인
                 </button>
 
                 <button
                     onClick={() => setIsEditing(false)}
-                    className="mvpCancelButton">
+                    className={Style.mvpCancelButton}>
                     취소
                 </button>
                 </Col>

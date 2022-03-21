@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Form, Button, Row,Col} from 'react-bootstrap'
 import * as Api from '../../api'
-import '../../App.css'
+import Style from '../../App.module.css'
 
 
 //현재 award(currentAward)의 title, description을 상태로 설정해야 함
@@ -66,13 +66,13 @@ function AwardEditForm({currentAward, setAwards, setIsEditing}){
 
                 <button
                     type="submit"
-                    className="mvpConfirmButton me-3">
+                    className={Style.mvpConfirmButton}>
                     확인
                 </button>
 
                 <button
                     onClick={() => setIsEditing(false)}
-                    className="mvpCancelButton">
+                    className={Style.mvpCancelButton}>
                     취소
                 </button>
                 
