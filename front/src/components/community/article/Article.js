@@ -18,6 +18,7 @@ function Article({article, setArticles, owner}) {
                     article={article}
                     setIsEditing={setIsEditing}
                     owner={owner}
+                    
                 />
             )}
         </>

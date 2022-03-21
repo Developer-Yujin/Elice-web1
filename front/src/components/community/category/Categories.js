@@ -8,7 +8,7 @@ import Style from '../../../App.module.css'
 
 function Categories({isLogin, setIsArticleOpen}){
     const [categories, setCategories] = useState([
-        '취업꿀팁', '저녁메뉴'
+        '취업꿀팁 게시판', '저녁메뉴 게시판'
     ])
     //원래는 이렇게 선언하는 것!
     //const [categories, setCategories] = useState([])
@@ -22,11 +22,11 @@ function Categories({isLogin, setIsArticleOpen}){
 
     return (
         <Card className="mt-4" style={{textAlign: 'center'}}>
-            <Card.Header>전체 게시판</Card.Header>
+            <Card.Header className={Style.categoryHeader}>전체 게시판</Card.Header>
             {categories.map((category) => (
                 <Category 
                     key={category.id}
-                    category={category}
+                    currentCategory={category}
                     setIsArticleOpen={setIsArticleOpen}
                 />
             ))}
@@ -38,7 +38,7 @@ function Categories({isLogin, setIsArticleOpen}){
 
                         <button
                             onClick={() => setIsAdding(true)}
-                            className={Style.formAddButton}>
+                            className={[Style.formAddButton, Style.communityAddButton].join(' ')}>
                         </button>
                         
                     </Col>

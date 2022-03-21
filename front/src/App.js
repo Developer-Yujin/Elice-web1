@@ -23,7 +23,7 @@ function App() {
 
     //category 훅을 통해 categoryState 상태와 categoryDispatch함수를 생성함. 
     const [categoryState, categoryDispatch] = useReducer(categoryReducer, {
-        category: null,
+        category: null
     })
 
     // 아래의 fetchCurrentUser 함수가 실행된 다음에 컴포넌트가 구현되도록 함.

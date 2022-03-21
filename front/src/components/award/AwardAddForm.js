@@ -42,7 +42,9 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
                 width: 'auto',
                 border: 'solid 2px #DBC7FF'
             }}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => {
+                setTitle(e.target.value)
+            }}
         />
         </Form.Group>
 

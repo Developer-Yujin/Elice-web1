@@ -130,4 +130,17 @@
   margin-left: auto;
 }
 
+.categoryHeader {
+  background-color: #D9DDFF;
+  font-weight: bold;
+  font-size: larger;
+}
 
+.categoryItem {
+  font-size:medium;
+  font-weight: bold;
+}
+
+.communityAddButton {
+  background-color: #6F6EC6;
+}

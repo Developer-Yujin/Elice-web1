@@ -18,10 +18,14 @@ export function userReducer(userState, action) {
 }
 
 export function categoryReducer(categoryState, action){
-    if(action.type === 'SET_CATEGORY'){
-        return {
-            ...categoryState,
-            category: action.payload,
+    switch (action.type) {
+        case 'SET_CATEGORY':{
+            return {
+                ...categoryState.category,
+                category: action.payload,
+            }
         }
+
+        
     }
 }

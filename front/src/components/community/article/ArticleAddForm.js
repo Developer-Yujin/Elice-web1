@@ -3,19 +3,17 @@ import {Form,Col,Button,Row} from 'react-bootstrap'
 import * as Api from '../../../api'
 import Style from '../../../App.module.css'
 
-function ArticleAddForm({owner, setIsAdding, setArticles}){
+function ArticleAddForm({owner, setIsAdding, setArticles, articles}){
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
 
     async function handleSubmit(e){
         e.preventDefault()
 
-        //작성자(owner)의 아이디를 user_id 변수에 할당함
-        const user_id = owner.id
-
         //'/:category명/article/create'로 post 요청해서 게시글 등록하기
         //await Api.post("article/create", {
-        //    user_id,
+              //로그인한 사용자(owner)의 이름을 author로 설정
+        //    author: owner.name,
         //    title,
         //    description
         //})
@@ -23,11 +21,10 @@ function ArticleAddForm({owner, setIsAdding, setArticles}){
         //'/:category명/articlelist'로 get 요청해서 등록된 게시글도 불러오기
         //const res = await Api.get("articlelist")
         //setArticles(res.data)
-        setArticles(prev => prev.push({
-            title,
-            description,
-            user_id
-        }))
+        setArticles([{
+            title, description, author: owner.name
+        }, ...articles])
+        console.log(articles)
 
         setIsAdding(false)
     }
@@ -56,7 +53,7 @@ function ArticleAddForm({owner, setIsAdding, setArticles}){
                 <Col sm={{ span: 20 }}>
                     <button
                         type="submit"
-                        className={Style.confirmButton}>
+                        className={[Style.confirmButton, Style.communityAddButton].join(' ')}>
                         확인
                     </button>
 

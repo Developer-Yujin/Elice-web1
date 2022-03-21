@@ -5,17 +5,18 @@ import * as Api from '../../../api'
 
 function ArticleEditForm({ setArticles, currentArticle, setIsEditing}){
     const [title, setTitle] = useState(currentArticle.title)
-    const [body, setBody] = useState(currentArticle.body)
+    const [description, setDescription] = useState(currentArticle.description)
 
     async function submitHandler(e){
         e.preventDefault()
 
+        // 게시글의 작성자
         const user_id = currentArticle.user_id
 
         await Api.put(`articles/${currentArticle.id}`, {
             user_id,
             title,
-            body
+            description
         })
 
         //게시글 수정 후에 다시 게시글리스트 get 요청함
@@ -43,8 +44,8 @@ function ArticleEditForm({ setArticles, currentArticle, setIsEditing}){
                 <Form.Control 
                     type="text" 
                     placeholder="상세내역"
-                    value={body} 
-                    onChange={(e) => setBody(e.target.value)}
+                    value={description} 
+                    onChange={(e) => setDescription(e.target.value)}
                 />
             </Form.Group>
             

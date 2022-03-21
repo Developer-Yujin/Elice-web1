@@ -10,11 +10,11 @@ import Style from '../../../App.module.css'
 //category에는 현재 카테고리 정보
 function Articles({isLogin}){
 
-    
     const [isAdding, setIsAdding] = useState(false)  
 
     //dummy data로 UI 시연
     const [articles, setArticles] = useState([{
+        author: '박정미',
         title: '아근데 요즘 취업',
         description: '개힘듬'
     }])
@@ -37,15 +37,6 @@ function Articles({isLogin}){
         <Card className={'mt-3'}>
             <Card.Title>{category.name}</Card.Title>
             <Card.Body>
-                {articles.map((article) => (
-                    <Article
-                        article={article}
-                        key={article.id}
-                        setArticles={setArticles}
-                        
-                        owner={owner}
-                    />
-                ))}
 
                 {/*로그인했을 때만 글작성할 수 있음 */}
                 {isLogin && (
@@ -53,7 +44,7 @@ function Articles({isLogin}){
                     <Col>
                         <button
                             onClick={() => setIsAdding(true)}
-                            className={Style.formAddButton}>
+                            className={[Style.formAddButton, Style.communityAddButton].join(' ')}>
                         </button>
                     </Col>
                     </Row> 
@@ -64,8 +55,21 @@ function Articles({isLogin}){
                         owner={owner}
                         setIsAdding={setIsAdding}
                         setArticles={setArticles}
+                        articles={articles}
                     />
                 )}
+
+                {articles.map((article) => (
+                    <Article
+                        article={article}
+                        key={article.id}
+                        setArticles={setArticles}
+                        owner={owner}
+                        
+                    />
+                ))}
+
+                
             </Card.Body>
         </Card>
     )
