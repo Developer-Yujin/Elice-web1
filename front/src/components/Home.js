@@ -76,7 +76,6 @@ function Home(){
 					{/*categoryState를 불러와서 이젠 Articles에 category를 넘길 수 있다..?? */}
 					{IsArticleOpen && (
 						<Articles
-							isEditable={true}
 							isLogin={isLogin}
 							owner={owner}
 							category={categoryState}/>

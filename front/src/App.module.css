@@ -49,11 +49,17 @@
   background-color: rgb(218, 50, 50);
 }
 
-.mvpConfirmButton, .mvpCancelButton {
+.mvpConfirmButton, .mvpCancelButton, .confirmButton, .cancelButton {
   color: white;
   border-radius: 5px;
   width: 60px;
   height: 40px;
+  margin-right: 10px
+}
+
+.confirmButton {
+  background-color: #4048F9;
+  border: #4048F9;
 }
 
 .mvpConfirmButton {
@@ -61,7 +67,7 @@
   border: #B041E3;
   margin: 0 10px 0 10px;
 }
-.mvpCancelButton {
+.mvpCancelButton, .cancelButton {
   background-color: gray;
   border: gray
 }
@@ -72,6 +78,13 @@
   font-size: 2em;
   margin-bottom: 20px;
   padding: 20px 0 20px 28px;
+}
+
+.mvpBackground {
+  background-color: #E5D6FF;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
 }
 
 /* input창 border 스타일 */

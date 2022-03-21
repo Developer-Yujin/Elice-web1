@@ -25,6 +25,7 @@ function AwardEditForm({currentAward, setAwards, setIsEditing}){
 
         //수정을 해놨으니까, 다시 get 요청함. 엔드포인트: "awardlist/유저아이디"
         const res = await Api.get("awardlist", user_id)
+        console.log(res.data)
         setAwards(res.data)
 
         //추가하는 과정이 끝났으니까 isAdding을 false로 설정해서 수정폼을 안보이게 함

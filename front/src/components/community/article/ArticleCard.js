@@ -13,6 +13,7 @@ function ArticleCard({article, isEditable, setIsEditing, owner}){
                     <br />
                     <span className="text-muted">작성자: {owner.name}</span>
                 </Col>
+                
                 {isEditable && (
                     <Col>
                         <Button onClick={() => setIsEditing(true)}>수정</Button>

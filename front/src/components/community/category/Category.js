@@ -1,11 +1,10 @@
 import { useContext } from 'react'
 import {ListGroup} from 'react-bootstrap'
-import { CategoryContext, UserStateContext } from '../../../App'
+import { CategoryContext } from '../../../App'
 
 function Category({category, setIsArticleOpen}){
 
     const {categoryState, categoryDispatch} = useContext(CategoryContext)
-    const userState = useContext(UserStateContext)
     
     return (
     <>
@@ -20,7 +19,6 @@ function Category({category, setIsArticleOpen}){
                 })
                 {/*클릭된 category정보 하나가 categoryState로 저장될까요..? */}
                 console.log('categoryState? ',categoryState)
-                console.log('userState?', userState)
             }}>
                 {category}
             </ListGroup.Item>

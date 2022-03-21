@@ -3,7 +3,6 @@ import EducationCard from './EducationCard'
 import EducationEditForm from './EducationEditForm'
 import * as Api from '../../api'
 
-
 function Education({education, isEditable, setEducations}){
     const [isEditing, setIsEditing] = useState(false)
 

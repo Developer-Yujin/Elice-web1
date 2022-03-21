@@ -13,6 +13,7 @@ function Award({award, setAwards, isEditable}) {
         try{
             await Api.delete(`awards/${award.id}`)
             setAwards(prev => prev.filter(item => item.id !== award.id))
+            
         } catch(err) {
             console.log(err)
         }

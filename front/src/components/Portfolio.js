@@ -68,12 +68,7 @@ function Portfolio() {
 				/>
 			</Col>
 				
-			<Col xxl={9} style={{
-				backgroundColor: '#E5D6FF',
-				padding: '20px',
-				borderRadius: '15px',
-				marginTop: '20px'
-			}} className={Style.mvpBackground}>
+			<Col xxl={9} className={Style.mvpBackground}>
 			
 				<Educations 
 					portfolioOwnerId={portfolioOwner.id}

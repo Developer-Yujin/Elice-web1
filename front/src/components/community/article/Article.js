@@ -2,7 +2,7 @@ import { useState } from "react"
 import ArticleCard from "./ArticleCard"
 import ArticleEditForm from "./ArticleEditForm"
 
-function Article({article, setArticles, isEditable, owner}) {
+function Article({article, setArticles, owner}) {
     const [isEditing, setIsEditing] = useState(false)
 
     return (
@@ -16,7 +16,6 @@ function Article({article, setArticles, isEditable, owner}) {
             ) : (
                 <ArticleCard
                     article={article}
-                    isEditable={isEditable}
                     setIsEditing={setIsEditing}
                     owner={owner}
                 />

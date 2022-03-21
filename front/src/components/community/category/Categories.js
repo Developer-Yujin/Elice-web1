@@ -21,9 +21,8 @@ function Categories({isLogin, setIsArticleOpen}){
     const [isAdding, setIsAdding] = useState(false)
 
     return (
-        <Card>
+        <Card className="mt-4" style={{textAlign: 'center'}}>
             <Card.Header>전체 게시판</Card.Header>
-
             {categories.map((category) => (
                 <Category 
                     key={category.id}
