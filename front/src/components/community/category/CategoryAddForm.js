@@ -19,6 +19,7 @@ function CategoryAddForm({setIsAdding, setCategories}){
         })
         setIsAdding(false)
     }
+    
     return (
         <Form onSubmit={submitHandler}>
             <Form.Group className="mb-3" controlId="formBasicEmail">

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
-import '../../App.css'
+import Style from '../../App.module.css'
 
 function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
     //useState로 title 상태를 생성함.
@@ -63,13 +63,13 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
 
             <button
                 type="submit"
-                className="mvpConfirmButton me-3">
+                className={Style.mvpConfirmButton}>
                 확인
             </button>
 
             <button
                 onClick={() => setIsAdding(false)}
-                className="mvpCancelButton">
+                className={Style.mvpCancelButton}>
                 취소
             </button>
         </Col>

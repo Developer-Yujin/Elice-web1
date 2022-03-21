@@ -4,6 +4,8 @@ import Category from './Category'
 import CategoryAddForm from './CategoryAddForm'
 import * as Api from '../../../api'
 
+import Style from '../../../App.module.css'
+
 function Categories({isLogin, setIsArticleOpen}){
     const [categories, setCategories] = useState([
         '취업꿀팁', '저녁메뉴'
@@ -37,7 +39,7 @@ function Categories({isLogin, setIsArticleOpen}){
 
                         <button
                             onClick={() => setIsAdding(true)}
-                            className="formAddButton">
+                            className={Style.formAddButton}>
                         </button>
                         
                     </Col>

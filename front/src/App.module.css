@@ -30,7 +30,6 @@
 }
 
 .mvpEditButton, .mvpRemoveButton{
-  background-color: #B041E3;
   color: white;
   border: #B041E3;
   width: 50px;
@@ -42,7 +41,12 @@
 }
 
 .mvpEditButton {
+  background-color: #B041E3;
   margin: 0 10px 10px 0
+}
+
+.mvpRemoveButton {
+  background-color: rgb(218, 50, 50);
 }
 
 .mvpConfirmButton, .mvpCancelButton {
@@ -55,6 +59,7 @@
 .mvpConfirmButton {
   background-color: #B041E3;
   border: #B041E3;
+  margin: 0 10px 0 10px;
 }
 .mvpCancelButton {
   background-color: gray;
@@ -99,6 +104,10 @@
   margin-left: auto;
 }
 
+.navItem:hover {
+  background-color: #5c60e7;
+}
+
 .navWithdraw {
   border-radius: 10px;
   background-color: #4A414E;
@@ -107,3 +116,5 @@
   cursor: pointer;
   margin-left: auto;
 }
+
+
