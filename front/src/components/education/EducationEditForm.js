@@ -34,6 +34,8 @@ function EducationEditForm({setEducations, currentEducation, setIsEditing}){
         }
     }
     
+    const positionInformations = ['재학중', '학사졸업', '석사졸업', '박사졸업']
+
     return (
         <Form onSubmit={submitHandler}>
             <Form.Group controlId="formBasicSchool" className="mt-3">
@@ -62,42 +64,24 @@ function EducationEditForm({setEducations, currentEducation, setIsEditing}){
             </Form.Group>
 
             <Form.Group controlId="formBasicPosition" className="mt-3">
-                <Form.Check 
-                    inline
-                    type="radio"
-                    name="재학중"
-                    id="재학중"
-                    label="재학중"
-                    checked = {position === '재학중'}
-                    onClick = {(e) => setPosition(e.target.name)}
-                />
-                <Form.Check 
-                    inline
-                    type="radio"
-                    name="학사졸업"
-                    id="학사졸업"
-                    label="학사졸업"
-                    checked = {position === '학사졸업'}
-                    onClick = {(e) => setPosition(e.target.name)}
-                />
-                <Form.Check 
-                    inline
-                    type="radio"
-                    name="석사졸업"
-                    id="석사졸업"
-                    label="석사졸업"
-                    checked = {position === '석사졸업'}
-                    onClick = {(e) => setPosition(e.target.name)}
-                />
-                <Form.Check 
-                    inline
-                    type="radio"
-                    name="박사졸업"
-                    id="박사졸업"
-                    label="박사졸업"
-                    checked = {position === '박사졸업'}
-                    onClick = {(e) => setPosition(e.target.name)}
-                />
+
+                {positionInformations.map((Info, index) => (
+                    
+                    <label style={{margin: '7px'}}>
+                        <input 
+                            style={{marginRight: '7px'}}
+                            type="radio"
+                            key={index}
+                            inline
+                            name={Info}
+                            id={Info}
+                            checked={position === Info}
+                            onChange={(e) => setPosition(e.target.name)}
+                        />
+                        {Info}
+                    </label>
+                        
+                ))}
                 
             </Form.Group>
 
