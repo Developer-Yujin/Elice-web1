@@ -1,4 +1,4 @@
-import {Card, Row, Col, Button} from 'react-bootstrap'
+import {Card, Row, Col } from 'react-bootstrap'
 import Style from '../../App.module.css'
 
 //등록된 award들

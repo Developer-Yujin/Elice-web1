@@ -22,9 +22,16 @@ function EducationAddForm({ setIsAdding, portfolioOwnerId, setEducations }) {
                 major,
                 position
             })
+            
+            setEducations((prev) => [...prev, 
+                {
+                    user_id: portfolioOwnerId,
+                    school,
+                    major,
+                    position
+                }
+            ])
 
-            const res = await Api.get("educationlist", user_id)
-            setEducations(res.data)
             setIsAdding(false)
         } catch(err) {
             console.log(err)
@@ -63,7 +70,7 @@ function EducationAddForm({ setIsAdding, portfolioOwnerId, setEducations }) {
             <Form.Group controlId="formBasicPosition" className="mt-3">
 
                 {positionInformations.map((Info, index) => (
-                    
+
                     <label style={{margin: '7px'}}>
                         <input 
                             style={{marginRight: '7px'}}

@@ -25,7 +25,7 @@ function CategoryAddForm({setIsAdding, setCategories}){
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 <Form.Text className="text-muted">
-                어떤 종류의 커뮤니티를 만들건가요?
+                어떤 종류의 커뮤니티를 만들건가요? 한번 등록하면 삭제할 수 없습니다!
                 </Form.Text>
             </Form.Group>
 
