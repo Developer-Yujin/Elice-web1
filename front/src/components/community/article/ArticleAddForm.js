@@ -3,7 +3,7 @@ import {Form,Col,Button,Row} from 'react-bootstrap'
 import * as Api from '../../../api'
 import Style from '../../../App.module.css'
 
-function ArticleAddForm({owner, setIsAdding, setArticles, articles}){
+function ArticleAddForm({owner, setIsAdding, setArticles, articles, category}){
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
 
@@ -21,6 +21,7 @@ function ArticleAddForm({owner, setIsAdding, setArticles, articles}){
         //'/:category명/articlelist'로 get 요청해서 등록된 게시글도 불러오기
         //const res = await Api.get("articlelist")
         //setArticles(res.data)
+        
         setArticles([{
             title, description, author: owner.name
         }, ...articles])

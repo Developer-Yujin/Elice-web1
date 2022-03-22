@@ -1,4 +1,3 @@
-
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState,useEffect, useContext } from "react";
@@ -6,7 +5,6 @@ import { useState,useEffect, useContext } from "react";
 import * as Api from "../api";
 
 import { UserStateContext } from "../App";
-
 
 import User from "./user/User";
 import Articles from "./community/article/Articles";
@@ -39,7 +37,6 @@ function Home(){
 			fetchOwner(ownerId);
 		} else {
 			// 이외의 경우, 즉 URL이 "/" 라면, 전역 상태의 user.id를 유저 id로 설정함.
-
 			const ownerId = userState.user?.id;
 
 			// 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
@@ -50,15 +47,22 @@ function Home(){
 	// 전역상태에서 user가 null이 아니라면 로그인 성공 상태임.
 	const isLogin = !!userState.user;
 
-
 	//특정 카데고리를 클릭하면 해당하는 article들을 이제 보여줌
 	const [IsArticleOpen, setIsArticleOpen] = useState(false)
 
-	// CRUD할 카테고리 상태값
+	//* dummy data로 UI 시연 -> 나중엔 null로 바꿔야 됨
+	// CRU할 카테고리 상태값
 	const [categories, setCategories] = useState(['취업추천', '저녁메뉴'])
 
 	//category 컴포넌트 내에서 선택된 카테고리를 가져오는 상태값
 	const [selectedCategory, setSelectedCategory] = useState(null)
+
+	//CRUD할 게시글 상태값
+    const [articles, setArticles] = useState([{
+        author: '쩡미',
+        title: '아근데 요즘 취업',
+        description: '개힘듬'
+    }])
 
     //로그인하지 않아도 게시글은 볼 수 있음 
     //로그인했을 때만 글작성할 수 있음
@@ -79,7 +83,6 @@ function Home(){
 				</Col>
 
 				<Col>
-
 					<Categories 
 						isLogin={isLogin}
 						setIsArticleOpen={setIsArticleOpen}
@@ -88,13 +91,18 @@ function Home(){
 						setSelectedCategory={setSelectedCategory}
 					/>
 
-					{/*categoryState를 불러와서 이젠 Articles에 category를 넘길 수 있다..?? */}
 					{IsArticleOpen && (
 						<Articles
 							isLogin={isLogin}
 							owner={owner}
-							category={selectedCategory}/>
+							category={selectedCategory}
+							articles={articles}
+							setArticles={setArticles}
+							/>
 					)}
+
+					{/*comment에 해당 Article 정보를 가져가야 함!*/}
+
 
 				</Col>
 			</Row>

@@ -4,6 +4,7 @@ import * as Api from '../../../api'
 
 
 function ArticleEditForm({ setArticles, currentArticle, setIsEditing}){
+    const author = currentArticle.author
     const [title, setTitle] = useState(currentArticle.title)
     const [description, setDescription] = useState(currentArticle.description)
 
@@ -11,18 +12,22 @@ function ArticleEditForm({ setArticles, currentArticle, setIsEditing}){
         e.preventDefault()
 
         // 게시글의 작성자
-        const user_id = currentArticle.user_id
+        //const author = currentArticle.author
 
-        await Api.put(`articles/${currentArticle.id}`, {
-            user_id,
-            title,
-            description
-        })
+        //await Api.put(`articles/${currentArticle.id}`, {
+        //    author,
+        //    title,
+        //    description
+        //})
 
         //게시글 수정 후에 다시 게시글리스트 get 요청함
-        const res = await Api.get("articlelist")
+        //const res = await Api.get("articlelist")
+        //setArticles(res.data)
 
-        setArticles(res.data)
+        setArticles((prev) => prev.map((v) => {
+            if(v !== currentArticle) return {...v}
+            else return {author, title, description }
+        }))
         setIsEditing(false)
     }
 
@@ -32,7 +37,7 @@ function ArticleEditForm({ setArticles, currentArticle, setIsEditing}){
                 
                 <Form.Control 
                     type="text"
-                    placeholder="수상내역" 
+                    placeholder="제목" 
                     value={title} 
                     onChange={(e) => setTitle(e.target.value)}
                 />
@@ -43,7 +48,7 @@ function ArticleEditForm({ setArticles, currentArticle, setIsEditing}){
                 
                 <Form.Control 
                     type="text" 
-                    placeholder="상세내역"
+                    placeholder="본문"
                     value={description} 
                     onChange={(e) => setDescription(e.target.value)}
                 />

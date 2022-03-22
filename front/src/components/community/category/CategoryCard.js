@@ -9,7 +9,6 @@ function CategoryCard({setIsArticleOpen, setSelectedCategory, setIsEditing, cate
             value = {category}
             onDoubleClick={() => {
                 setIsArticleOpen(true)
-                alert("카테고리를 클릭하면 해당 카테고리에 들어있는 article들을 보여줘야 함.")
                 setSelectedCategory(category)
             }}>
             {category}

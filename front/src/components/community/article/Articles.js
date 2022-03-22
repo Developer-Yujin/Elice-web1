@@ -6,30 +6,17 @@ import ArticleAddForm from './ArticleAddForm'
 import Style from '../../../App.module.css'
 
 //props에 owner와 category를 가져옴
-//owner에는 로그인한 사용자의 정보,
-//category에는 현재 카테고리 정보
-
-function Articles({isLogin, category}){
+//owner(객체)에는 로그인한 사용자의 정보,
+//category(객체)에는 현재 카테고리 정보
+function Articles({isLogin, category, owner, articles, setArticles}){
 
     const [isAdding, setIsAdding] = useState(false)  
-
-    //dummy data로 UI 시연
-    const [articles, setArticles] = useState([{
-        author: '박정미',
-        title: '아근데 요즘 취업',
-        description: '개힘듬'
-    }])
-    const owner = {
-        id: 'c69beb5a-0ab1-4791-9eaf-1572d63650c3',
-        name: '박정미',
-        nickname: '쩡'
-    }
     
     useEffect(() => {
         console.log("currentCategory", category)
         //게시글 목록 불러오기
         //category.name
-        //Api.get("category_id/article/list").then((res) => setArticles(res.data))
+        //Api.get("category_name/article/list").then((res) => setArticles(res.data))
     })
 
     return(
@@ -37,8 +24,8 @@ function Articles({isLogin, category}){
             <div style={{backgroundColor: '#D9DDFF', padding: '15px', textAlign: 'center'}}>
                 <Card.Title style={{fontWeight: 'bolder'}}>{category}</Card.Title>
             </div>
-            <Card.Body>
 
+            <Card.Body>
                 {/*로그인했을 때만 글작성할 수 있음 */}
                 {isLogin && (
                     <Row className="text-center">
@@ -57,6 +44,7 @@ function Articles({isLogin, category}){
                         setIsAdding={setIsAdding}
                         setArticles={setArticles}
                         articles={articles}
+                        category={category}
                     />
                 )}
 
@@ -71,8 +59,8 @@ function Articles({isLogin, category}){
                     />
                 ))}
 
-                
             </Card.Body>
+
         </Card>
     )
 }
