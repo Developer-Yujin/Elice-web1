@@ -7,6 +7,9 @@ function ArticleAddForm({owner, setIsAdding, setArticles, articles, category}){
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
 
+    //익명버튼 상태
+    const [isCheck, setIsCheck] = useState()
+
     async function handleSubmit(e){
         e.preventDefault()
 
@@ -21,7 +24,7 @@ function ArticleAddForm({owner, setIsAdding, setArticles, articles, category}){
         //'/:category명/articlelist'로 get 요청해서 등록된 게시글도 불러오기
         //const res = await Api.get("articlelist")
         //setArticles(res.data)
-        
+
         setArticles([{
             title, description, author: owner.name
         }, ...articles])
@@ -32,22 +35,31 @@ function ArticleAddForm({owner, setIsAdding, setArticles, articles, category}){
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicTitle">
-            <Form.Control
-                type="text"
-                placeholder="제목"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+            
+            <Form.Check 
+                type="checkbox"
+                label= "익명이길 원하시나요?"
+                checked = {isCheck}
+                onChange={() => setIsCheck((prev) => !prev)}
             />
+
+            
+            <Form.Group controlId="formBasicTitle">
+                <Form.Control
+                    type="text"
+                    placeholder="제목"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
             </Form.Group>
 
             <Form.Group controlId="formBasicDescription" className="mt-3">
-            <Form.Control
-                type="text"
-                placeholder="본문"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-            />
+                <Form.Control
+                    type="text"
+                    placeholder="본문"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
             </Form.Group>
 
             <Form.Group as={Row} className="mt-3 text-center">

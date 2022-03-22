@@ -2,7 +2,7 @@ import { useState } from "react"
 import ArticleCard from "./ArticleCard"
 import ArticleEditForm from "./ArticleEditForm"
 
-function Article({category, article, setArticles, owner}) {
+function Article({category, article, setArticles, owner, isLogin, setIsDetail}) {
     const [isEditing, setIsEditing] = useState(false)
 
         //async function removeArticle(){
@@ -31,6 +31,8 @@ function Article({category, article, setArticles, owner}) {
                     setIsEditing={setIsEditing}
                     owner={owner}
                     removeArticle={removeArticle}
+                    isLogin={isLogin}
+                    setIsDetail={setIsDetail}
                     
                 />
             )}
