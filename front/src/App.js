@@ -13,19 +13,12 @@ import Home from './components/Home'
 
 export const UserStateContext = createContext(null)
 export const DispatchContext = createContext(null)
-// category를 전역으로 사용하기 위해서 useContext를 사용했습니다!
-export const CategoryContext = createContext(null)
 
 function App() {
     // userReducer 훅을 통해 userState 상태와 userDispatch함수를 생성함.
     const [userState, userDispatch] = useReducer(userReducer, {
         user: null,
     });
-
-    //category 훅을 통해 categoryState 상태와 categoryDispatch함수를 생성함. 
-    const [categoryState, categoryDispatch] = useReducer(categoryReducer, {
-        category: null,
-    })
 
     // 아래의 fetchCurrentUser 함수가 실행된 다음에 컴포넌트가 구현되도록 함.
     // 아래 코드를 보면 isFetchCompleted 가 true여야 컴포넌트가 구현됨.
@@ -63,7 +56,6 @@ function App() {
     return (
         <DispatchContext.Provider value={userDispatch}>
             <UserStateContext.Provider value={userState}>
-                <CategoryContext.Provider value={{categoryState, categoryDispatch}}>
                     <Router>
                         <Header />
                         <Routes>
@@ -77,7 +69,6 @@ function App() {
                             {/*<Route path="/category" element={<Category />} />*/}
                         </Routes>
                     </Router>
-                </CategoryContext.Provider>
             </UserStateContext.Provider>
         </DispatchContext.Provider>
     );

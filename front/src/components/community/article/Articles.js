@@ -1,48 +1,77 @@
 import { useEffect, useState } from 'react'
 import {Card, Row, Col, Button} from 'react-bootstrap'
 import Article from './Article'
-// import * as Api from "../../../api"
+import * as Api from "../../../api"
 import ArticleAddForm from './ArticleAddForm'
+import Style from '../../../App.module.css'
 
-function Articles({isLogin, owner, isEditable, category_name}){
+//props에 owner와 category를 가져옴
+//owner에는 로그인한 사용자의 정보,
+//category에는 현재 카테고리 정보
 
-    const [articles, setArticles] = useState([])
+function Articles({isLogin, category}){
+
     const [isAdding, setIsAdding] = useState(false)  
 
+    //dummy data로 UI 시연
+    const [articles, setArticles] = useState([{
+        author: '박정미',
+        title: '아근데 요즘 취업',
+        description: '개힘듬'
+    }])
+    const owner = {
+        id: 'c69beb5a-0ab1-4791-9eaf-1572d63650c3',
+        name: '박정미',
+        nickname: '쩡'
+    }
+    
     useEffect(() => {
+        console.log("currentCategory", category)
         //게시글 목록 불러오기
-        //Api.get("articlelist").then((res) => setArticles(res.data))
+        //category.name
+        //Api.get("category_id/article/list").then((res) => setArticles(res.data))
     })
 
     return(
-        <Card style={{ width: '18rem' }}>
+        <Card className={'mt-3'}>
+            <div style={{backgroundColor: '#D9DDFF', padding: '15px', textAlign: 'center'}}>
+                <Card.Title style={{fontWeight: 'bolder'}}>{category}</Card.Title>
+            </div>
             <Card.Body>
-                {articles.map((article) => (
-                    <Article
-                        article={article}
-                        key={article.id}
-                        setArticles={setArticles}
-                        isEditable={isEditable}
-                        owner={owner}
-                    />
-                )).filter(category_name === {category_name})}
-                {/* filter함수로 category_name이 일치하는 글 목록들만 띄워주기*/}
 
                 {/*로그인했을 때만 글작성할 수 있음 */}
                 {isLogin && (
                     <Row className="text-center">
                     <Col>
-                        <Button onClick={() => setIsAdding(true)}>+</Button>
+                        <button
+                            onClick={() => setIsAdding(true)}
+                            className={[Style.formAddButton, Style.communityAddButton].join(' ')}>
+                        </button>
                     </Col>
                     </Row> 
                 )}
+
                 {isAdding && (
                     <ArticleAddForm 
                         owner={owner}
                         setIsAdding={setIsAdding}
                         setArticles={setArticles}
+                        articles={articles}
                     />
                 )}
+
+                {articles.map((article) => (
+                    <Article
+                        article={article}
+                        key={article.id}
+                        setArticles={setArticles}
+                        owner={owner}
+                        category = {category}
+                        
+                    />
+                ))}
+
+                
             </Card.Body>
         </Card>
     )

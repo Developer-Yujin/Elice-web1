@@ -18,8 +18,8 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
                     />
                 </Row>
 
-
-                    <Card.Title>{user?.name}</Card.Title>
+                    <Card.Title>{user?.name} <button>팔로우</button></Card.Title>
+                    
                     <Card.Subtitle className="mb-2 text-muted">{user?.email}</Card.Subtitle>
                     <Card.Text>{user?.description}</Card.Text>
 

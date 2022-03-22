@@ -4,10 +4,10 @@ import Category from './Category'
 import CategoryAddForm from './CategoryAddForm'
 import * as Api from '../../../api'
 
-function Categories({isLogin, setIsArticleOpen}){
-    const [categories, setCategories] = useState([
-        '취업꿀팁', '저녁메뉴'
-    ])
+import Style from '../../../App.module.css'
+
+function Categories({isLogin, setIsArticleOpen, setCategories, categories, setSelectedCategory}){
+
     //원래는 이렇게 선언하는 것!
     //const [categories, setCategories] = useState([])
 
@@ -19,14 +19,17 @@ function Categories({isLogin, setIsArticleOpen}){
     const [isAdding, setIsAdding] = useState(false)
 
     return (
-        <Card>
-            <Card.Header>전체 게시판</Card.Header>
-
+        <Card className="mt-4" style={{textAlign: 'center'}}>
+            {console.log(categories)}
+            <Card.Header className={Style.categoryHeader}>전체 게시판</Card.Header>
             {categories.map((category) => (
                 <Category 
                     key={category.id}
                     category={category}
                     setIsArticleOpen={setIsArticleOpen}
+                    setSelectedCategory={setSelectedCategory}
+                    setCategories={setCategories}
+                    categories={categories}
                 />
             ))}
 
@@ -37,7 +40,7 @@ function Categories({isLogin, setIsArticleOpen}){
 
                         <button
                             onClick={() => setIsAdding(true)}
-                            className="formAddButton">
+                            className={[Style.formAddButton, Style.communityAddButton].join(' ')}>
                         </button>
                         
                     </Col>
