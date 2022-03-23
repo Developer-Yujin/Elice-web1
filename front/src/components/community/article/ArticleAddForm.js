@@ -1,14 +1,14 @@
 import { useState } from "react"
-import {Form,Col,Button,Row} from 'react-bootstrap'
+import {Form,Col,Row} from 'react-bootstrap'
 import * as Api from '../../../api'
 import Style from '../../../App.module.css'
 
-function ArticleAddForm({owner, setIsAdding, setArticles, articles, category}){
+function ArticleAddForm({owner, setIsAdding, dispatch, articles, category}){
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
 
     //익명버튼 상태
-    const [isCheck, setIsCheck] = useState()
+    const [isCheck, setIsCheck] = useState(false)
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -24,10 +24,13 @@ function ArticleAddForm({owner, setIsAdding, setArticles, articles, category}){
         //'/:category명/articlelist'로 get 요청해서 등록된 게시글도 불러오기
         //const res = await Api.get("articlelist")
         //setArticles(res.data)
-
-        setArticles([{
-            title, description, author: owner.name
-        }, ...articles])
+        
+        dispatch({
+            type: 'ADD',
+            payload: {
+                title, description, author: owner.name
+            }
+        })
         console.log(articles)
 
         setIsAdding(false)
@@ -38,11 +41,10 @@ function ArticleAddForm({owner, setIsAdding, setArticles, articles, category}){
             
             <Form.Check 
                 type="checkbox"
-                label= "익명이길 원하시나요?"
+                label= "익명"
                 checked = {isCheck}
                 onChange={() => setIsCheck((prev) => !prev)}
             />
-
             
             <Form.Group controlId="formBasicTitle">
                 <Form.Control

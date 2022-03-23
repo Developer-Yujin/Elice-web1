@@ -25,3 +25,23 @@ export function categoryReducer(categoryState, action){
         }
     }
 }
+
+export const articleReducer = (state, action) => {
+    const {id, title, description, author} = action.payload
+    switch(action.type){
+        case 'SET':
+            return action.payload
+        case 'ADD':
+            return [...state, {id: state.length+1, title, description, author}]
+        case 'EDIT':
+            return state.map((article) => 
+                article.id === action.payload.id
+                ? {id, title, description, author}
+                : article
+            )
+        case 'DELETE':
+            return state.filter((article) => article !== action.payload)
+        default:
+            return state
+    }
+}

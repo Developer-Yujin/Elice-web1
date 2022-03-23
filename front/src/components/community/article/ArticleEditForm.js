@@ -1,12 +1,16 @@
 import { useState } from "react"
 import {Form, Row, Col, Button} from 'react-bootstrap'
+import { useNavigate } from "react-router"
 import * as Api from '../../../api'
 
 
-function ArticleEditForm({ setArticles, currentArticle, setIsEditing}){
+function ArticleEditForm({ dispatch, currentArticle, setIsEditing}){
+    const id = currentArticle.id
     const author = currentArticle.author
     const [title, setTitle] = useState(currentArticle.title)
     const [description, setDescription] = useState(currentArticle.description)
+
+    const navigate = useNavigate()
 
     async function submitHandler(e){
         e.preventDefault()
@@ -24,11 +28,17 @@ function ArticleEditForm({ setArticles, currentArticle, setIsEditing}){
         //const res = await Api.get("articlelist")
         //setArticles(res.data)
 
-        setArticles((prev) => prev.map((v) => {
-            if(v !== currentArticle) return {...v}
-            else return {author, title, description }
-        }))
+        //setArticles((prev) => prev.map((v) => {
+        //    if(v !== currentArticle) return {...v}
+        //    else return {author, title, description }
+        //}))
+        dispatch({
+            type: 'EDIT',
+            payload: {id, author, title, description }
+        })
+        
         setIsEditing(false)
+        navigate('/')
     }
 
     return (

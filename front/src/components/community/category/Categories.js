@@ -20,7 +20,6 @@ function Categories({isLogin, setIsArticleOpen, setCategories, categories, setSe
 
     return (
         <Card className="mt-4" style={{textAlign: 'center'}}>
-            {console.log(categories)}
             <Card.Header className={Style.categoryHeader}>전체 게시판</Card.Header>
             {categories.map((category) => (
                 <Category 

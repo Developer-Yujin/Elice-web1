@@ -1,6 +1,23 @@
-function ArticleDetail(){
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router"
+import Comments from "../comment/Comments"
+
+function ArticleDetail({setIsDetail, isLogin, category, owner, selectedArticle}){
+
+    const navigate = useNavigate()
     return(
-        <div>안녕안녕</div>
+        <>
+            <button onClick={() => {
+                setIsDetail(false)
+                navigate('/')
+            }}>뒤로가기</button>
+            
+            <Comments 
+                isLogin={isLogin}
+                category={category}
+                owner={owner}
+                article={selectedArticle}/>
+        </>
     )
 }
 

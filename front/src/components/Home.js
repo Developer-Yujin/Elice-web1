@@ -57,12 +57,7 @@ function Home(){
 	//category 컴포넌트 내에서 선택된 카테고리를 가져오는 상태값
 	const [selectedCategory, setSelectedCategory] = useState(null)
 
-	//CRUD할 게시글 상태값
-    const [articles, setArticles] = useState([{
-        author: '쩡미',
-        title: '아근데 요즘 취업',
-        description: '개힘듬'
-    }])
+	
 
     //로그인하지 않아도 게시글은 볼 수 있음 
     //로그인했을 때만 글작성할 수 있음
@@ -96,8 +91,7 @@ function Home(){
 							isLogin={isLogin}
 							owner={owner}
 							category={selectedCategory}
-							articles={articles}
-							setArticles={setArticles}
+						
 							/>
 					)}
 

@@ -1,15 +1,43 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import {Card, Row, Col, Button} from 'react-bootstrap'
 import Article from './Article'
 import * as Api from "../../../api"
 import ArticleAddForm from './ArticleAddForm'
 import Style from '../../../App.module.css'
 import ArticleDetail from './ArticleDetail'
+import {articleReducer} from '../../../reducer'
+import { useParams } from 'react-router'
 
 //props에 owner와 category를 가져옴
 //owner(객체)에는 로그인한 사용자의 정보,
 //category(객체)에는 현재 카테고리 정보
-function Articles({isLogin, category, owner, articles, setArticles}){
+function Articles({isLogin, category, owner}){
+
+    //CRUD할 게시글 상태값
+    const [articles, articleDispatch] = useReducer(articleReducer, [{
+        id: 1,
+        author: '쩡미',
+        title: '요즘취업',
+        description: '개힘듬'
+    }])
+
+    useEffect(() => {
+        articleDispatch({
+            type: 'SET',
+            payload: articles
+        })
+    }, [articles])
+
+    const articleId = useParams()
+    console.log('params?', articleId)
+
+    const [selectedArticle, setSelectedArticle] = useState(null)
+
+    //useEffect(() => {
+    //    setSelectedArticle(
+    //        articles.find((article) => article.id == articleId)
+    //    )
+    //}, [articleId, articles])
 
     const [isAdding, setIsAdding] = useState(false)  
 
@@ -30,7 +58,13 @@ function Articles({isLogin, category, owner, articles, setArticles}){
             </div>
 
             {isDetail ? (
-                <ArticleDetail />
+                <ArticleDetail 
+                    category={category}
+                    setIsDetail={setIsDetail}
+                    selectedArticle={selectedArticle}
+                    isLogin={isLogin}
+                    owner={owner}
+                />
             ) : (
                 <Card.Body>
                     {/*로그인했을 때만 글작성할 수 있음 */}
@@ -49,7 +83,7 @@ function Articles({isLogin, category, owner, articles, setArticles}){
                         <ArticleAddForm 
                             owner={owner}
                             setIsAdding={setIsAdding}
-                            setArticles={setArticles}
+                            dispatch={articleDispatch}
                             articles={articles}
                             category={category}
                         />
@@ -59,18 +93,17 @@ function Articles({isLogin, category, owner, articles, setArticles}){
                         <Article
                             article={article}
                             key={article.id}
-                            setArticles={setArticles}
+                            dispatch={articleDispatch}
                             owner={owner}
                             category = {category}
                             isLogin={isLogin}
                             setIsDetail={setIsDetail}
-                            
+                            setSelectedArticle={setSelectedArticle}
                         />
                     ))}
                 </Card.Body>
-            )}
-            
 
+            )}
         </Card>
     )
 }
