@@ -8,13 +8,18 @@ import * as Api from '../../../api'
 function CategoryEditForm({ dispatch, setIsEditing, currentCategory}){
     const {userId, id} = currentCategory
     const [name, setName] = useState(currentCategory.name)
+    const [description, setDescription] = useState(currentCategory.description)
     
     async function editCategory(){
         //TODO: api 수정 하기!
-        //try~catch 사용
-        //await Api.put('category/카테고리 아이디?', {
-        //    name
-        //})
+        try{
+            await Api.put(`/category/${currentCategory.name}`, {
+                name,
+                description
+            })
+        } catch(err){
+            console.log(err)
+        }
 
         dispatch({
             type: 'EDIT',
@@ -29,6 +34,11 @@ function CategoryEditForm({ dispatch, setIsEditing, currentCategory}){
                 type="text" 
                 value={name} 
                 onChange={(e) => setName(e.target.value)}/>
+
+            <input 
+                type="text" 
+                value={description} 
+                onChange={(e) => setDescription(e.target.value)}/>
 
             <span style={{marginLeft: '1rem'}} onClick={() => editCategory()}>
                     <FontAwesomeIcon icon={faCheck} />
