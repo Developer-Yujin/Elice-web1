@@ -74,6 +74,7 @@ function Home(){
 
     //owner: 로그인한 사용자
     //owner.id: 로그인한 사용자 아이디
+	console.log(owner)
 
     return (
 		<Container>
