@@ -1,90 +1,85 @@
-import React, { useEffect, useState } from "react";
-import { Card, Button, Row, Col } from "react-bootstrap";
+import React, { useEffect, useReducer, useState } from "react";
+import { Card } from "react-bootstrap";
 import * as Api from "../../../api";
 import Comment from "./Comment";
 import CommentAddForm from "./CommentAddForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCommentDots, faThumbsUp } from "@fortawesome/free-solid-svg-icons"
+import { commentReducer } from "../../../reducer";
+import Style from '../../../App.module.css'
 
-function Comments({ isLogin, owner, category, article}) {
-    //useState로 comments 상태를 생성함.
-    const [comments, setComments] = useState([]);
-    //useState로 isAdding 상태를 생성함.
+//owner(객체)에는 로그인한 사용자의 정보,
+//category(객체)에는 현재 카테고리 정보
+function Comments({ isLogin, category, article, owner}) {
+
+    //TODO: dummy data로 시연 -> 초기값 []로 바꿔줘야 됨
+    //CRUD할 댓글 상태값
+    const [comments, commentDispatch] = useReducer(commentReducer, [{
+        id: 1,
+        writer: '휘인',
+        content: '뭐지',
+        hidden: false
+    }])
+
+    useEffect(() => {
+        commentDispatch({
+            type: 'SET',
+            payload: comments
+        })
+    }, [comments])
+
+    //const [selectedComment, setSelectedComment] = useState(null)
+
+    // 추가중 여부
     const [isAdding, setIsAdding] = useState(false);
 
+    // * 좋아요 여부
     const [isFine, setIsFine] = useState(false)
 
     useEffect(() => {
+        //TODO: Api get 요청하기!
+        //해당 게시글의 댓글 목록 불러오기
         //Api.get("comment/list", owner.id).then((res) => setComments(res.data));
     }, [owner]);
 
     return (
         <>
-            <div style={{display: 'flex', justifyContent: 'space-between', padding: '30px'}}>
-                <span style={{fontSize: '2.5rem', fontWeight: 'bolder'}}>{article.title}</span>
-                <span style={{color: '#AD9191'}}>작성자: {article.author}</span>
+            <div class={Style.articleDetails}>
+                <span class={Style.articleDetailTitle}>{article.title}</span>
+                <span class={Style.articleDetailAuthor}>작성자: {article.author}</span>
             </div>
 
             <div style={{padding: '30px'}}>
-                <div style={{fontSize: '1.4rem', marginBottom: '1rem'}}>{article.description}</div>
+                <div class={Style.articleDetailDesc}>{article.description}</div>
                 <button onClick={() => setIsFine((prev) => !prev)}
-                        style={{
-                            color: isFine ? '#989CFD' : 'white',
-                            borderRadius: '10px',
-                            border: 'none',
-                            fontSize: '1.2rem'
-                        }}><FontAwesomeIcon icon={faThumbsUp} /></button>
+                        style={{ color: isFine ? 'white' : '#5960c0', backgroundColor: isFine ? '#5960c0' : 'white' }}
+                        class={Style.fineIcon}><FontAwesomeIcon icon={faThumbsUp} /></button>
             </div>
+
             <Card>
-                <Card.Body>
-                <Card.Title className="mb-3">댓글</Card.Title>
-                <FontAwesomeIcon icon={faCommentDots} />
+                <Card.Body className={Style.commentBackground}>
+                    <Card.Title className="mb-3">
+                        댓글
+                        {/* 로그인했을 때만 댓글 추가할 수 있음 */}
+                        {isLogin && <FontAwesomeIcon className={Style.commentIcon} onClick={() => setIsAdding((prev) => !prev)} icon={faCommentDots} />}
+                    </Card.Title>
+                    {isAdding && (
+                        <CommentAddForm 
+                            owner={owner}
+                            comments={comments}
+                            dispatch={commentDispatch}
+                            setIsAdding={setIsAdding} />
+                    )}
 
-                {comments.map((comment) => (
-                    <Comment
-                        //key={comment.id}
-                        commnet={comment}
-                        setComments={setComments}
-                        //setIsEditable={setIsEditable}
-                        //ownerId={ownerId}
-                    />
-                ))}
-
-                {/* 로그인했을 때 댓글 추가/수정을 할 수 있음 */}
-{/* 
-                {isLogin && (
-                    <Row className="text-center">
-                    <Col>
-                        <Button onClick={() => setIsAdding(true)}>추가</Button>
-                    </Col>
-                    </Row> 
-                )}
-
-                {isLogin && (
-                    <Row className="text-center">
-                    <Col>
-                        <Button>수정</Button>
-                    </Col>
-                    </Row> 
-                )}
-
-
-
-                
-                {(//isEditable && 
-                    <Row className="mt-3 text-center mb-4">
-                    <Col sm={{ span: 20 }}>
-                        <Button onClick={() => setIsAdding(true)}>+</Button>
-                    </Col>
-                    </Row>
-                )}
-                {isAdding && (
-                    <CommentAddForm 
-                        //portfolioOwnerId={ownerId}
-                        setIsAdding={setIsAdding}
-                        setComments={setComments}/>
-                )} */}
-
+                    {comments.map((comment) => (
+                        <Comment
+                            key={comment.id}
+                            owner={owner}
+                            comment={comment}
+                            dispatch={commentDispatch}
+                            isLogin={isLogin}
+                        />
+                    ))}
                 </Card.Body>
             </Card>
         </>

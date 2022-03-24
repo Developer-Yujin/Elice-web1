@@ -1,22 +1,25 @@
-import { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router"
+import { useNavigate } from "react-router"
 import Comments from "../comment/Comments"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
+import Style from '../../../App.module.css'
 
-function ArticleDetail({setIsDetail, isLogin, category, owner, selectedArticle}){
+function ArticleDetail({category, setIsDetail, selectedArticle, isLogin, owner}){
 
     const navigate = useNavigate()
+
     return(
         <>
-            <button onClick={() => {
+            <span class={Style.backButton} onClick={() => {
                 setIsDetail(false)
-                navigate('/')
-            }}>뒤로가기</button>
-            
+                navigate(`/${category.id}`)
+            }}> <FontAwesomeIcon icon={faArrowLeft} /> </span>
+
             <Comments 
                 isLogin={isLogin}
                 category={category}
-                owner={owner}
-                article={selectedArticle}/>
+                article={selectedArticle}
+                owner={owner} />
         </>
     )
 }

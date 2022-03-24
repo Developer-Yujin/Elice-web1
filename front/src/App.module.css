@@ -130,24 +130,102 @@ cursor: pointer;
 margin-left: auto;
 }
 
-.categoryHeader {
-background-color: #D9DDFF;
-font-weight: bold;
-font-size: larger;
+.cateHeader {
+  font-weight: bold;
+  font-size: larger;
+}
+
+.cateLink {
+  text-decoration: none; 
+  border: none;
 }
 
 .categoryItem {
-font-size:medium;
-font-weight: bold;
-cursor:pointer;
+  font-size:medium;
+  font-weight: bold;
 }
 
 .communityAddButton {
-background-color: #6F6EC6;
+  background-color: #6F6EC6;
 }
 
 .articleHeader{
   background-color:#D9DDFF;
   padding: 15px;
   text-align: center;
+}
+
+.articleItem {
+  background-color: #D9DDFF;
+  padding: 15px;
+  text-align: center;
+}
+
+.articleLink{
+  color: black;
+  text-decoration: none;
+}
+
+.articleLink:hover{
+  color: #6F6EC6;
+  text-decoration: none;
+}
+
+.articleCard {
+  background-color: #fff;
+}
+
+.articleCardText {
+  background-color: #fff;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.articleTitle{
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.articleDetails{
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+.articleDetailTitle{
+  font-size: 2.5rem;
+  font-weight: bolder;
+}
+
+.articleDetailAuthor{
+  color: #AD9191;
+}
+
+.articleDetailDesc{
+  font-size: 1.4rem; 
+  margin-bottom: 1rem;
+}
+
+.commentIcon{
+  color:#6e70b3;
+  font-size: 2rem;
+  margin: 0 0 0 0.5rem;
+  cursor: pointer;
+}
+
+.fineIcon {
+  border-radius: 20px;
+  border: 1px solid #5960c0;
+  font-size: 1.4rem;
+}
+
+.commentBackground{
+  background-color: #F6F7FF;
+}
+
+.backButton{
+  font-size: 2rem;
+  margin-left: 0.7rem;
+  cursor: pointer;
 }

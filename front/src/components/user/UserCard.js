@@ -63,14 +63,8 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
                     포트폴리오
                     </Button>
                 )}
-
-
-
             </Card>
             
-        
-
-
     );
 }
 

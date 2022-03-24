@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer, createContext } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 import * as Api from "./api"
-import { userReducer, categoryReducer } from "./reducer"
+import { userReducer } from "./reducer"
 
 import Header from "./components/Header"
 import LoginForm from "./components/user/LoginForm"
@@ -10,8 +10,6 @@ import Network from "./components/user/Network"
 import RegisterForm from "./components/user/RegisterForm"
 import Portfolio from "./components/Portfolio"
 import Home from './components/Home'
-import ArticleDetail from "./components/community/article/ArticleDetail"
-
 export const UserStateContext = createContext(null)
 export const DispatchContext = createContext(null)
 
@@ -60,16 +58,15 @@ function App() {
                 <Router>
                     <Header />
                     <Routes>
-                        {/*원래는 Portfolio 컴포넌트인데, Home.js 구현해보려고 여기서 Home넣으면서 시연해봤습니다! */}
                         <Route path="/" exact element={<Home />} />
-                        <Route exact path="/:articleId" element={<Home />} />
-                        <Route path="/:articleId/:comment" element={<Home />} />
+                        <Route path="/:categoryId" exact element={<Home />} />
+                        <Route path="/:categoryId/:articleName" element={<Home />} />
                         <Route path="/login" element={<LoginForm />} />
                         <Route path="/register" element={<RegisterForm />} />
                         <Route path="/users/:userId" element={<Portfolio />} />
+                        <Route path="/portfolio" element={<Portfolio />} />
                         <Route path="/network" element={<Network />} />
                         <Route path="*" element={<Home />} />
-                        {/*<Route path="/category" element={<Category />} />*/}
                     </Routes>
                 </Router>
             </UserStateContext.Provider>

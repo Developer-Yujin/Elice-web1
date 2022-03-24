@@ -1,29 +1,31 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import {ListGroup} from 'react-bootstrap'
-import Style from '../../../App.module.css'
+import { Link } from 'react-router-dom';
 import CategoryCard from './CategoryCard';
 import CategoryEditForm from './CategoryEditForm';
+import Style from '../../../App.module.css'
 
-function Category({categories, category, setIsArticleOpen, setSelectedCategory, setCategories}){
+function Category({category, setIsArticleOpen, setSelectedCategory, dispatch}){
 
+    // 편집중인지 여부
     const [isEditing, setIsEditing] = useState(false)
 
     return (
     <>
-        <ListGroup variant="flush">
+        <ListGroup >
             {isEditing ? (
                 <CategoryEditForm 
-                    setCategories={setCategories}
+                    dispatch={dispatch}
                     setIsEditing={setIsEditing}
-                    currentCategory={category}
-                    categories={categories}/>
+                    currentCategory={category} />
             ) : (
-                <CategoryCard 
-                    setIsArticleOpen={setIsArticleOpen}
-                    setSelectedCategory={setSelectedCategory}
-                    setIsEditing={setIsEditing}
-                    category={category}
-                    />
+                <Link to={`/${category.id}`} className={Style.cateLink}>
+                    <CategoryCard 
+                        setIsArticleOpen={setIsArticleOpen}
+                        setSelectedCategory={setSelectedCategory}
+                        setIsEditing={setIsEditing}
+                        category={category} />
+                </Link>
             )}
 
         </ListGroup>

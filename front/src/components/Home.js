@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState,useEffect, useContext } from "react";
+import { useState,useEffect, useContext, useReducer } from "react";
 
 import * as Api from "../api";
 
@@ -10,6 +10,7 @@ import User from "./user/User";
 import Articles from "./community/article/Articles";
 import LoginForm from "./user/LoginForm";
 import Categories from "./community/category/Categories";
+import { categoryReducer } from "../reducer";
 
 function Home(){
     const navigate = useNavigate()
@@ -47,17 +48,26 @@ function Home(){
 	// 전역상태에서 user가 null이 아니라면 로그인 성공 상태임.
 	const isLogin = !!userState.user;
 
-	//특정 카데고리를 클릭하면 해당하는 article들을 이제 보여줌
+	//* 특정 카데고리를 클릭하면 해당하는 article들을 이제 보여줌
 	const [IsArticleOpen, setIsArticleOpen] = useState(false)
 
-	//* dummy data로 UI 시연 -> 나중엔 null로 바꿔야 됨
+	//TODO: dummy data로 UI 시연 -> 나중엔 []로 바꿔야 됨
 	// CRU할 카테고리 상태값
-	const [categories, setCategories] = useState(['취업추천', '저녁메뉴'])
+	const [categories, categoryDispatch] = useReducer(categoryReducer,[{
+		id: 1,
+		userId: '정미예요',
+		name: '저녁메뉴'
+	}])
 
-	//category 컴포넌트 내에서 선택된 카테고리를 가져오는 상태값
-	const [selectedCategory, setSelectedCategory] = useState(null)
+	useEffect(() => {
+        categoryDispatch({
+            type: 'SET',
+            payload: categories
+        })
+    }, [categories])
 
-	
+	//* category 컴포넌트 내에서 선택된 카테고리를 가져오는 상태값
+	const [selectedCategory, setSelectedCategory] = useState({})
 
     //로그인하지 않아도 게시글은 볼 수 있음 
     //로그인했을 때만 글작성할 수 있음
@@ -67,37 +77,28 @@ function Home(){
 
     return (
 		<Container>
-			<Row>
-				<Col xxl={3} lg={3} md={3}>
+			<Row xs={1} xxl={2}>
+				<Col md="3" lg="3" xxl={3}>
 					{isLogin ? (
 						<User />
 					) : (
 						<LoginForm />
 					)}
-					
+					<Categories 
+						categories={categories}
+						isLogin={isLogin}
+						dispatch={categoryDispatch}
+						setIsArticleOpen={setIsArticleOpen}
+						setSelectedCategory={setSelectedCategory} />	
 				</Col>
 
-				<Col>
-					<Categories 
-						isLogin={isLogin}
-						setIsArticleOpen={setIsArticleOpen}
-						setCategories={setCategories}
-						categories={categories}
-						setSelectedCategory={setSelectedCategory}
-					/>
-
+				<Col xxl={9} className="mb-4">
 					{IsArticleOpen && (
 						<Articles
 							isLogin={isLogin}
 							owner={owner}
-							category={selectedCategory}
-						
-							/>
+							category={selectedCategory} />
 					)}
-
-					{/*comment에 해당 Article 정보를 가져가야 함!*/}
-
-
 				</Col>
 			</Row>
 		</Container>
