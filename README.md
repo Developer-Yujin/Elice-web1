@@ -14,7 +14,7 @@
 - **BACK** : Node.js, Express.js
 - **DB** : MongoDB
 - **Cloud Storage** : AWS S3
-- **Auth** : JWT, OAuth
+- **Auth** : JWT, OAuth, SSL
 - **Deploy Server** : Linux (ubuntu 20.04) / vCPU 2개 / RAM 4 GB / Disk 20GB
 - **CI/CD** : Docker, gitlab-runner
 
@@ -42,9 +42,9 @@
 - **회원 탈퇴** : 사용자 회원 탈퇴
 
 <개선과 배포>
-- **클린 코드** : 코드 가독성을 위한 camelCase, errorMiddle, PUT API 중복 호출 개선, Prefix와 json accept
-- **UI 디자인** : 
-- **sorting** : 
+- **클린 코드** : 코드 가독성을 위한 클린 코드, camelCase, errorMiddle 호출, PUT API 중복 호출 개선(set), API Prefix와 json accept
+- **UI 디자인** : 독자적인 디자인
+- **sorting** : 자동 정렬 기능
 
 
 ## 2. 서비스 주요 기능 설명(차후 수정)
@@ -58,7 +58,7 @@
 
 - 서비스 구조도 (사용한 기술 스택)
 - 와이어프레임 (예상 웹 화면 UI) e.g) figma 사용
-- API Docs
+- API Docs : https://documenter.getpostman.com/view/18498277/UVsPPjtr
 
 ## 4. 프로젝트 팀원 역할 분담
 
@@ -121,10 +121,11 @@
 - 예시) 이 서비스는 어떻게 실행하면 되나요?
     - git clone을 하신 후 .env 파일을 요청하고 아래 커맨드를 입력하시면 됩니다. ~~~
     ```shell
+    # backend
     $ cd back
     $ npm install
     $ npm start
-    # diff terminal
+    # frontend
     $ cd front
     $ npm install
     $ npm start
