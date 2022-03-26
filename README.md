@@ -56,7 +56,7 @@
 ## 3. 서비스 구성도
 
 - 서비스 구조도 (사용한 기술 스택)
-<img src="/uploads/f577bfe9162de5a7344485dac97c1a83/서비스_구조도.png"  width="700" height="370">
+<img src="/uploads/243777c66e9a9d920281a0af15fce471/서비스_구조도.png"  width="700" height="370">
 
 
 - [와이어프레임](https://www.figma.com/file/IHrYe08wEvkYH2bfJR7qa9/%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=0%3A1) : figma 사용
