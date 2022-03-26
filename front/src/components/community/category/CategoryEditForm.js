@@ -7,7 +7,6 @@ import * as Api from '../../../api'
 
 function CategoryEditForm({ dispatch, setIsEditing, currentCategory}){
 
-    console.log(currentCategory)
     const [name, setName] = useState(currentCategory.name)
     const [description, setDescription] = useState(currentCategory.description)
     

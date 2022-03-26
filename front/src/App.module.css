@@ -281,15 +281,9 @@
     cursor: pointer;
 }
 
-html{
-    position: relative;
-    height: auto;
-    min-height: 100%;
-}
-
 .footer {
     text-align: center;
-    margin-top: 100px;
+    margin-top: auto;
     background-color: #D9DDFF;
     width: 100%;
     height: 50px; /* footer의 높이 */
