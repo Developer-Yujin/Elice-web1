@@ -12,6 +12,8 @@ import Portfolio from "./components/Portfolio"
 import Home from './components/Home'
 import Footer from "./components/Footer"
 
+import Style from './App.module.css'
+
 export const UserStateContext = createContext(null)
 export const DispatchContext = createContext(null)
 
@@ -52,7 +54,8 @@ function App() {
     return (
         <DispatchContext.Provider value={userDispatch}>
             <UserStateContext.Provider value={userState}>
-                <Router >
+            <Router >
+            <div className={Style.mainWrapper}>
                     <Header />
                     <Routes >
                         <Route path="/" exact element={<Home />} />
@@ -66,6 +69,7 @@ function App() {
                         <Route path="*" element={<Home />} />
                     </Routes>
                     <Footer />
+                    </div>
                 </Router>
 
             </UserStateContext.Provider>
