@@ -36,7 +36,7 @@ function Comments({ isLogin, category, article, owner }) {
 
     useLayoutEffect(() => {
         getData();
-    }, [comments])
+    }, [article.id])
 
     // 추가중 여부
     const [isAdding, setIsAdding] = useState(false);

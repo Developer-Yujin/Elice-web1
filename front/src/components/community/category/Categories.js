@@ -6,7 +6,7 @@ import * as Api from '../../../api'
 
 import Style from '../../../App.module.css'
 
-function Categories({ categories, isLogin, dispatch, setIsArticleOpen, setSelectedCategory, setIsinitialCategory }) {
+function Categories({ categories, isLogin, dispatch, setIsArticleOpen, setSelectedCategory, setIsinitialCategory, setIsDetail }) {
     useEffect(() => {
         async function getData() {
             try {
@@ -22,7 +22,7 @@ function Categories({ categories, isLogin, dispatch, setIsArticleOpen, setSelect
             }
         }
         getData()
-    }, [categories])
+    }, [])
 
     const [isAdding, setIsAdding] = useState(false)
 
