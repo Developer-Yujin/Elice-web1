@@ -40,7 +40,7 @@ function UserEditForm({ user, setIsEditing, setUser, setBasic }) {
                 formData.set("file", imageInfo)
 
                 axios.post(
-                    `http://elice-kdt-ai-4th-team21.elicecoding.com/user/${user.id}/img`,
+                    `http://localhost.com/user/${user.id}/img`,
                     formData,
                     config
                 ).then((res) => {
