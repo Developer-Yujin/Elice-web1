@@ -16,14 +16,13 @@ function CategoryAddForm({setIsAdding, dispatch}){
 
         //TODO: Api post 요청하기!
         try{
-            await Api.post('category/create', {
+            const newCategory = await Api.post('category/create', {
                 userId,
                 name, description
             })
-
             dispatch({
                 type: 'ADD',
-                payload: {userId, name, description}
+                payload: newCategory.data
             })
 
             setIsAdding(false)

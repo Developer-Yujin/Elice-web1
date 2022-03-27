@@ -20,7 +20,7 @@ console.log(currentComment)
                 hidden: hidden,
                 writerName: owner.nickname
             })
-            console.log(editedComment.data)
+
             dispatch({
                 type: 'EDIT',
                 payload: editedComment.data

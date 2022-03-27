@@ -7,20 +7,19 @@ import * as Api from '../../../api'
 
 function CategoryEditForm({ dispatch, setIsEditing, currentCategory}){
 
-    console.log(currentCategory)
     const [name, setName] = useState(currentCategory.name)
     const [description, setDescription] = useState(currentCategory.description)
-    
+
     async function editCategory(){
         //TODO: api 수정 하기!
         try{    
-            await Api.put(`category/${currentCategory.name}`, {
+            const editedCategory = await Api.put(`category/${currentCategory.name}`, {
                 name, description
             })
-
+            console.log(editedCategory.data)
             dispatch({
                 type: 'EDIT',
-                payload: {name, description}
+                payload: editedCategory.data
             })
 
             setIsEditing(false)

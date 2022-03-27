@@ -24,6 +24,7 @@ function Categories({ categories, isLogin, dispatch, setIsArticleOpen, setSelect
         getData()
     }, [])
 
+    
     const [isAdding, setIsAdding] = useState(false)
 
     return (
