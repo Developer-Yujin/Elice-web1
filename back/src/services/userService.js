@@ -108,6 +108,9 @@ const userAuthService = {
         const indexFollowerYour = followerYour.indexOf(userIdMy)
         const indexFollowingMy = followingMy.indexOf(userIdYour)
 
+        let followerCountYour
+        let followingCountMy
+        
         // follow
         if (indexFollowingMy === -1 && indexFollowerYour === -1) {
             followerCountYour = userYour.followerCount + 1

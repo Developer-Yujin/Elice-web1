@@ -38,7 +38,7 @@ function UserEditForm({ user, setIsEditing, setUser, setBasic }) {
                 }
                 formData.set("file", imageInfo)
 
-                axios.post(
+                axios.put(
                     `http://localhost:5001/user/${user.id}/img`,
                     formData,
                     config
