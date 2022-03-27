@@ -22,6 +22,7 @@ function UserEditForm({ user, setIsEditing, setUser, setBasic }) {
 
             const updatedUser = res.data;
             setUser(updatedUser)
+            
 
             //* 이미지 put 요청하기
             if (isNone) {
@@ -37,6 +38,7 @@ function UserEditForm({ user, setIsEditing, setUser, setBasic }) {
                     }
                 }
                 formData.set("file", imageInfo)
+                console.log("imageInfo", imageInfo)
 
                 axios.put(
                     `http://localhost:5001/user/${user.id}/img`,
@@ -56,7 +58,7 @@ function UserEditForm({ user, setIsEditing, setUser, setBasic }) {
     return (
         <Card className="mb-2" style={{ backgroundColor: '#FCFAFA' }}>
             <Card.Body>
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit} method="GET">
                     <Form.Group controlId="userEditName">
                         <Form.Control
                             disabled
