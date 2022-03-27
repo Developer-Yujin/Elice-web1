@@ -18,9 +18,9 @@ function Network() {
             navigate("/login");
             return;
         }
-
+        console.log("??")
         Api.get("user/list").then((res) => setUsers(res.data));
-    }, [users]);
+    }, [navigate]);
 
     return (
         <Container fluid>
@@ -29,11 +29,13 @@ function Network() {
                     marginTop: '30px', marginBottom: '20px'
                 }}>
             {users.map((user) => (
+                
                 <UserCard 
                     key={user.id} 
                     user={user} 
                     myID={myID}
-                    
+                    users={users}
+                    setUsers={setUsers}
                     isNetwork />
             ))}
             </Row>

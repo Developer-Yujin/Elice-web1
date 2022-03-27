@@ -54,8 +54,9 @@ function App() {
     return (
         <DispatchContext.Provider value={userDispatch}>
             <UserStateContext.Provider value={userState}>
-            <Router >
-            <div className={Style.mainWrapper}>
+                
+                <Router >
+                <div className={Style.mainWrapper}>
                     <Header />
                     <Routes >
                         <Route path="/" exact element={<Home />} />
@@ -69,7 +70,7 @@ function App() {
                         <Route path="*" element={<Home />} />
                     </Routes>
                     <Footer />
-                    </div>
+                </div>
                 </Router>
 
             </UserStateContext.Provider>
